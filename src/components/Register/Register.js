@@ -7,12 +7,17 @@ import { Link } from 'react-router-dom'
 import { transformGraphQLErrors } from '../../apolloHelpers'
 import Page from '../Page'
 import Form from './Form'
+    // errors {      }
+    //  message
 
 const CREATE_USER = gql`
   mutation CreateUser($input: CreateUserInput!) {
     createUser(input: $input) {
-      errors {
-        message
+      UserPayload{
+        user {
+          email
+          username        
+        }
       }
     }
   }

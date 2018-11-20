@@ -11,8 +11,12 @@ import Profile from './Profile'
 import Register from './Register'
 import Settings from './Settings'
 
+const y = apolloClient.request;
+const x = "Hi";
 const App = () => (
+  
   <ApolloProvider client={apolloClient}>
+   {console.log(y + x + apolloClient.uri)}
     <BrowserRouter>
       <Fragment>
         <Switch>

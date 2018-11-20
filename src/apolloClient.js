@@ -1,8 +1,9 @@
 import ApolloClient from 'apollo-boost'
 import tokenStorage from './tokenStorage'
 
-const GRAPHQL_URL = process.env.REACT_APP_GRAPHQL_URL || 'https://realworld-graphql.herokuapp.com/graphql'
-
+process.env.REACT_APP_GRAPHQL_URL = "https://localhost:5000/graphql"
+const GRAPHQL_URL = process.env.REACT_APP_GRAPHQL_URL || 'https://realworld-graphql.herokuapp.com/graphql' 
+//Link to my own graphQL server"http://localhost:5000/graphql" //
 const clientState = {
   defaults: {
     feedFilter: {
@@ -30,6 +31,7 @@ const client = new ApolloClient({
     if (token) {
       headers = { authorization: `Token ${token}` }
     }
+    console.log(GRAPHQL_URL)
     operation.setContext({ headers })
   },
   clientState

@@ -26,13 +26,19 @@ const PopularTags = () => (
       fetchPolicy="cache-and-network"
     >
       {({ loading, error, data }) => {
-        if (loading || error) return 'Loading tags...'
+        console.log(data)
+        if (loading || error) {
+          //Place holder tags so page can load
+          data.tags =["hi", "test", "chew"]
+          console.log(data)
+          return 'Loading tags...'
+        } 
 
         return (
           <Mutation mutation={CHANGE_FEED_FILTER}>
             {changeFeedFilter => (
               <div className="tag-list">
-                {data.tags.map(tag => (
+                {["hi", "test", "chew"].map(tag => (//data.tags
                   <Tag
                     key={tag}
                     onClick={() => changeFeedFilter({ variables: { type: TAG_FEED, tag } })}

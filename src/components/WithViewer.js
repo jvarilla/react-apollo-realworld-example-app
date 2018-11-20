@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { Query } from 'react-apollo'
 
+//      id       image       bio
 const USER_FRAGMENT = gql`
   fragment WithViewer on Viewer {
     user {
-      id
       username
       email
-      image
-      bio
+
+
     }
   }
 `
@@ -20,10 +20,19 @@ const GET_VIEWER = gql`
     viewer {
       ...WithViewer
     }
-  },
+  }
+
   ${USER_FRAGMENT}
 `
-
+  //variable: {"username":"Biker981"},
+// const USER_FRAGMENT = {
+//   user: {
+//     id: 981,
+//     username: "Biker981",
+//     email: "jvarilla981@gmail.com",
+//     bio: "Fake"
+//   }
+// }
 const WithViewer = ({ children }) => (
   <Query query={GET_VIEWER}>
     {({ loading, error, data }) => {
@@ -31,6 +40,7 @@ const WithViewer = ({ children }) => (
       return children(data.viewer)
     }}
   </Query>
+
 )
 
 WithViewer.propTypes = {
